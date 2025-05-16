@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Expense Calculator</h1>
+        
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('expenses')">
+                💰 Expenses
+            </button>
+            <button class="tab-btn" onclick="switchTab('categories')">
+                📋 Categories
+            </button>
+        </div>
+
+        <div id="expenses" class="tab-content active">
+            <div class="expense-form">
+                <h2>Add New Expense</h2>
+                <div class="form-group">
+                    <select id="category" required>
+                        <option value="">Select Category</option>
+                    </select>
+                    <input 
+                        type="number" 
+                        id="amount" 
+                        placeholder="Amount ($)" 
+                        required 
+                        min="0.01" 
+                        max="999999999.99" 
+                        step="0.01" 
+                        pattern="^\d*\.?\d{0,2}$"
+                        onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || event.charCode === 46"
+                    >
+                    <button onclick="addExpense()">
+                        Add Expense
+                    </button>
+                </div>
+            </div>
+
+            <div class="expenses-table">
+                <h2>Expenses List</h2>
+                <table id="expensesTable">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Amount ($)</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expensesList">
+                    </tbody>
+                </table>
+            </div>
+
+            <button class="calculate-btn" onclick="calculateExpenses()">
+                Calculate Summary
+            </button>
+
+            <div class="results" id="results">
+                <div class="result-card">
+                    <h3>Total Expenses</h3>
+                    <p id="totalExpenses">$0</p>
+                </div>
+                <div class="result-card">
+                    <h3>Average Daily Expense</h3>
+                    <p id="averageExpense">$0</p>
+                </div>
+                <div class="result-card">
+                    <h3>Top 3 Expenses</h3>
+                    <ul id="topExpenses">
+                        <li>No expenses yet</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="categories" class="tab-content">
+            <div class="category-form">
+                <h2>Manage Categories</h2>
+                <div class="form-group">
+                    <input type="text" id="newCategory" placeholder="New Category Name" required>
+                    <button onclick="addCategory()">
+                        Add Category
+                    </button>
+                </div>
+            </div>
+
+            <div class="categories-table">
+                <h2>Categories List</h2>
+                <table id="categoriesTable">
+                    <thead>
+                        <tr>
+                            <th>Category Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="categoriesList">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
