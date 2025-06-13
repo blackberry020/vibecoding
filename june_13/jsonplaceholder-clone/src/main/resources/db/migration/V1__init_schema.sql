@@ -1,0 +1,20 @@
+CREATE TABLE users (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    phone VARCHAR(50),
+    website VARCHAR(255),
+    street VARCHAR(255),
+    suite VARCHAR(255),
+    city VARCHAR(255),
+    zipcode VARCHAR(50),
+    geo_lat VARCHAR(50),
+    geo_lng VARCHAR(50),
+    company_name VARCHAR(255),
+    company_catch_phrase TEXT,
+    company_bs TEXT,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP NOT NULL
+); 
