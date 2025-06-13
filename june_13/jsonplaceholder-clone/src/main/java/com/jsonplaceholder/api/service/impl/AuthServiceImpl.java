@@ -9,6 +9,8 @@ import com.jsonplaceholder.api.repository.UserRepository;
 import com.jsonplaceholder.api.security.JwtService;
 import com.jsonplaceholder.api.service.AuthService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
+    private static final Logger log = LoggerFactory.getLogger(AuthServiceImpl.class);
     private final AuthenticationManager authenticationManager;
     private final UserRepository userRepository;
     private final JwtService jwtService;
@@ -53,15 +56,24 @@ public class AuthServiceImpl implements AuthService {
     @Override
     @Transactional
     public User register(User user) {
-        if (userRepository.existsByEmail(user.getEmail())) {
-            throw new IllegalArgumentException("Email already exists");
+        log.info("Registering user: username={}, email={}", user.getUsername(), user.getEmail());
+        try {
+            if (userRepository.existsByEmail(user.getEmail())) {
+                log.warn("Registration failed: Email already exists: {}", user.getEmail());
+                throw new IllegalArgumentException("Email already exists");
+            }
+            if (userRepository.existsByUsername(user.getUsername())) {
+                log.warn("Registration failed: Username already exists: {}", user.getUsername());
+                throw new IllegalArgumentException("Username already exists");
+            }
+            // Encode password and save user
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            User savedUser = userRepository.save(user);
+            log.info("User registered successfully: id={}, username={}", savedUser.getId(), savedUser.getUsername());
+            return savedUser;
+        } catch (Exception e) {
+            log.error("Registration failed for username={}, email={}: {}", user.getUsername(), user.getEmail(), e.getMessage(), e);
+            throw e;
         }
-        if (userRepository.existsByUsername(user.getUsername())) {
-            throw new IllegalArgumentException("Username already exists");
-        }
-        
-        // Encode password and save user
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
     }
 } 

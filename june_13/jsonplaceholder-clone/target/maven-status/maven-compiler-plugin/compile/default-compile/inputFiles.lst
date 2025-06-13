@@ -1,14 +1,12 @@
-/home/user/vibecoding/june_13/jsonplaceholder-clone/src/main/java/com/jsonplaceholder/api/model/Company.java
 /home/user/vibecoding/june_13/jsonplaceholder-clone/src/main/java/com/jsonplaceholder/api/exception/ResourceNotFoundException.java
 /home/user/vibecoding/june_13/jsonplaceholder-clone/src/main/java/com/jsonplaceholder/api/model/User.java
+/home/user/vibecoding/june_13/jsonplaceholder-clone/src/main/java/com/jsonplaceholder/api/config/OpenApiConfig.java
 /home/user/vibecoding/june_13/jsonplaceholder-clone/src/main/java/com/jsonplaceholder/api/security/JwtService.java
 /home/user/vibecoding/june_13/jsonplaceholder-clone/src/main/java/com/jsonplaceholder/api/service/impl/UserServiceImpl.java
 /home/user/vibecoding/june_13/jsonplaceholder-clone/src/main/java/com/jsonplaceholder/api/config/SecurityConfig.java
-/home/user/vibecoding/june_13/jsonplaceholder-clone/src/main/java/com/jsonplaceholder/api/model/Geo.java
 /home/user/vibecoding/june_13/jsonplaceholder-clone/src/main/java/com/jsonplaceholder/api/dto/CompanyDto.java
 /home/user/vibecoding/june_13/jsonplaceholder-clone/src/main/java/com/jsonplaceholder/api/controller/AuthController.java
 /home/user/vibecoding/june_13/jsonplaceholder-clone/src/main/java/com/jsonplaceholder/api/dto/GeoDto.java
-/home/user/vibecoding/june_13/jsonplaceholder-clone/src/main/java/com/jsonplaceholder/api/model/Address.java
 /home/user/vibecoding/june_13/jsonplaceholder-clone/src/main/java/com/jsonplaceholder/api/repository/UserRepository.java
 /home/user/vibecoding/june_13/jsonplaceholder-clone/src/main/java/com/jsonplaceholder/api/exception/ErrorResponse.java
 /home/user/vibecoding/june_13/jsonplaceholder-clone/src/main/java/com/jsonplaceholder/api/mapper/UserMapper.java
